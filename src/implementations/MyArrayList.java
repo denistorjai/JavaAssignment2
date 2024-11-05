@@ -152,12 +152,22 @@ public class MyArrayList<T> implements ListADT {
 
     @Override
     public Object[] toArray(Object[] toHold) throws NullPointerException {
-        return new Object[0];
+        if (toHold == null){
+            throw new NullPointerException("Object to hold is null");
+        }
+        if (toHold.length >= arrayList.length){
+            System.arraycopy(arrayList, 0, toHold, 0, toHold.length);
+        }
+        if (toHold.length < arrayList.length){
+            toHold = new Object[arrayList.length];
+            System.arraycopy(arrayList, 0, toHold, 0, toHold.length);
+        }
+        return toHold;
     }
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        return arrayList;
     }
 
     @Override
