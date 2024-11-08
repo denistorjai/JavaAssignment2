@@ -1,11 +1,13 @@
 package implementations;
 
+import org.omg.CosNaming.NamingContextPackage.NotFound;
 import utilities.Iterator;
 import utilities.ListADT;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class MyArrayList<T> implements ListADT {
+public class MyArrayList<T> implements ListADT<T> {
 
     private T[] arrayList;
 
@@ -23,13 +25,11 @@ public class MyArrayList<T> implements ListADT {
 
     @Override
     public void clear() {
-        for (int i = 0; i < arrayList.length; i++) {
-            arrayList[i] = null;
-        }
+        arrayList = (T[]) new Object[0];
     }
 
     @Override
-    public boolean add(int index, Object toAdd) throws NullPointerException, IndexOutOfBoundsException {
+    public boolean add(int index, T toAdd) throws NullPointerException, IndexOutOfBoundsException {
         if (toAdd == null) {
             throw new NullPointerException("Object to be inserted is null");
         } if (index > this.size() || index < 0){
@@ -37,13 +37,16 @@ public class MyArrayList<T> implements ListADT {
         }
         if (index < this.size()) {
             T oldValue;
+            T newValue = toAdd;
             this.extend();
-            oldValue = arrayList[index];
-            arrayList[index] = (T) toAdd;
-            arrayList[index + 1] = oldValue;
+            for (int j = index; j < size(); j++) {
+                oldValue = arrayList[j];
+                arrayList[j] = newValue;
+                newValue = oldValue;
+            }
         } if (index == this.size()) {
             this.extend();
-            this.arrayList[index] = (T) toAdd;
+            this.arrayList[index] = toAdd;
         }
         return true;
     }
@@ -65,13 +68,13 @@ public class MyArrayList<T> implements ListADT {
     }
 
     @Override
-    public boolean add(Object toAdd) throws NullPointerException {
+    public boolean add(T toAdd) throws NullPointerException {
         if (toAdd == null) {
             throw new NullPointerException("Object to be inserted is null");
         }
         int index = this.size();
         this.extend();
-        this.arrayList[index] = (T) toAdd;
+        this.arrayList[index] = toAdd;
         return true;
     }
 
@@ -82,7 +85,7 @@ public class MyArrayList<T> implements ListADT {
         }
         int oldLength = this.arrayList.length;
         this.extend(toAdd.size());
-        for (int i = oldLength; i < oldLength+toAdd.size()-1; i++){
+        for (int i = oldLength; i < oldLength+toAdd.size(); i++){
             this.arrayList[i] = (T) toAdd.get(i-oldLength);
         }
         return true;
@@ -96,31 +99,50 @@ public class MyArrayList<T> implements ListADT {
         return arrayList[index];
     }
 
+    private double get(T toFind){
+        if (toFind == null) {
+            throw new NullPointerException("Object to be inserted is null");
+        }
+        int index = 0;
+        for (T item : arrayList) {
+            if (item.equals(toFind)){
+                return index;
+            }
+            index++;
+        }
+        return 0.1;
+    };
+
     @Override
     public T remove(int index) throws IndexOutOfBoundsException {
         if (index >= this.arrayList.length || index < 0) {
             throw new IndexOutOfBoundsException("Index is out of bounds");
         }
-        T object = arrayList[index];
-        arrayList[index] = null;
-        return object;
+        T removedValue = arrayList[index];
+        T[] newArray = (T[]) new Object[this.size()-1];
+        for (int i = 0; i < this.arrayList.length; i++) {
+            if(i < index && i != index) {
+                newArray[i] = this.arrayList[i];
+            }
+            if (i > index && i != index) {
+                newArray[i-1] = this.arrayList[i];
+            }
+        }
+        arrayList = newArray;
+        return removedValue;
     }
 
     @Override
-    public T remove(Object toRemove) throws NullPointerException {
-        int index = 0;
-        for (T item : arrayList) {
-            if (item.equals(toRemove)){
-                arrayList[index] = null;
-                return item;
-            }
-            index++;
+    public T remove(T toRemove) throws NullPointerException {
+        double check = get(toRemove);
+        if ((check % 1) == 0) {
+            return this.remove((int) this.get(toRemove));
         }
         return null;
     }
 
     @Override
-    public T set(int index, Object toChange) throws NullPointerException, IndexOutOfBoundsException {
+    public T set(int index, T toChange) throws NullPointerException, IndexOutOfBoundsException {
         if (toChange == null){
             throw new NullPointerException("Object to set is null");
         }
@@ -151,7 +173,7 @@ public class MyArrayList<T> implements ListADT {
     }
 
     @Override
-    public Object[] toArray(Object[] toHold) throws NullPointerException {
+    public T[] toArray(T[] toHold) throws NullPointerException {
         if (toHold == null){
             throw new NullPointerException("Object to hold is null");
         }
@@ -159,19 +181,19 @@ public class MyArrayList<T> implements ListADT {
             System.arraycopy(arrayList, 0, toHold, 0, toHold.length);
         }
         if (toHold.length < arrayList.length){
-            toHold = new Object[arrayList.length];
+            toHold = ((T[]) Array.newInstance(toHold.getClass().getComponentType(), arrayList.length));
             System.arraycopy(arrayList, 0, toHold, 0, toHold.length);
         }
         return toHold;
     }
 
     @Override
-    public Object[] toArray() {
+    public T[] toArray() {
         return arrayList;
     }
 
     @Override
-    public Iterator iterator() {
-        return new MyListIterator((MyArrayList<Object>) this);
+    public Iterator<T> iterator() {
+        return new MyListIterator<T>(this.arrayList);
     }
 }
