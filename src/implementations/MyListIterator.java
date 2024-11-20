@@ -4,25 +4,25 @@ import utilities.Iterator;
 
 import java.util.NoSuchElementException;
 
-public class MyListIterator implements Iterator {
+public class MyListIterator<T> implements Iterator<T> {
 
-    private final MyArrayList<Object> arrayList;
+    private final T[] arrayList;
     private int index;
-    public MyListIterator(MyArrayList<Object> insertedArrayList) {
+    public MyListIterator(T[] insertedArrayList) {
         this.arrayList = insertedArrayList;
         this.index = 0;
     }
 
     @Override
     public boolean hasNext() {
-        return index < arrayList.size();
+        return index < arrayList.length;
     }
 
     @Override
-    public Object next() throws NoSuchElementException {
-        if (arrayList.get(index+1) == null) {
-            throw new NoSuchElementException("Element is not in the list");
+    public T next() throws NoSuchElementException {
+        if (!hasNext()) {
+            throw new NoSuchElementException();
         }
-        return arrayList.get(index+1);
+        return arrayList[index++];
     }
 }

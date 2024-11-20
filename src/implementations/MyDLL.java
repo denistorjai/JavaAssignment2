@@ -3,6 +3,7 @@ package implementations;
 import utilities.Iterator;
 import utilities.ListADT;
 
+import java.lang.reflect.Array;
 import java.util.NoSuchElementException;
 
 public class MyDLL<T> implements ListADT<T>, Iterator<T> {
@@ -23,18 +24,6 @@ public class MyDLL<T> implements ListADT<T>, Iterator<T> {
 
     @Override
     public int size() {
-//        int i = 0;
-//        if (head == null) {
-//            return 0;
-//        }else {
-//            Node current = head;
-//            while (current != null) {
-//                i++;
-//                current = (Node) current.getNextNode();
-//            }
-//        }
-//        return i;
-
         return size;
     }
 
@@ -47,6 +36,7 @@ public class MyDLL<T> implements ListADT<T>, Iterator<T> {
             current.setNextNode(null);
             current.setData(null);
             current = next;
+            size--;
         }
         head = tail = null;
     }
@@ -59,19 +49,27 @@ public class MyDLL<T> implements ListADT<T>, Iterator<T> {
         if (toAdd == null) {
             throw new NullPointerException("Object to be added is null");
         }
-        Node<T> current = (Node<T>) this.get(index);
         Node<T> newNode = new Node<>(toAdd);
-        if (current.getNextNode() == null) {
-            //Extend the list
-            current.setNextNode(newNode);
-            newNode.setPrevNode(current);
-            newNode.setNextNode(null);
-        }else {
-            //Insert into the list
-            newNode.setNextNode(current);
+        if (head == null) {
+            head = newNode;
+            tail = newNode;
+        } else if (index == 0) {
+            newNode.setNextNode(head);
+            head.setPrevNode(newNode);
+            head = newNode;
+        } else if (index == size) {
+            newNode.setPrevNode(tail);
+            tail.setNextNode(newNode);
+            tail = newNode;
+        } else {
+            Node<T> current = getNode(index);
             Node<T> prev = current.getPrevNode();
+            newNode.setNextNode(current);
+            newNode.setPrevNode(prev);
+            if (prev != null) {
+                prev.setNextNode(newNode);
+            }
             current.setPrevNode(newNode);
-            prev.setNextNode(newNode);
         }
         size++;
         return true;
@@ -86,7 +84,7 @@ public class MyDLL<T> implements ListADT<T>, Iterator<T> {
         if (head == null) {
             head = tail = newNode;
             head.setPrevNode(null);
-            tail.setNextNode(newNode);
+            tail.setNextNode(null);
         }else {
             tail.setNextNode(newNode);
             newNode.setPrevNode(tail);
@@ -102,8 +100,30 @@ public class MyDLL<T> implements ListADT<T>, Iterator<T> {
         if (toAdd == null) {
             throw new NullPointerException("Cannot add a null value");
         }
-
+        for(int i = 0; i < toAdd.size(); i++) {
+            add((T) toAdd.get(i));
+        }
         return true;
+    }
+
+    private int getNode(T data) {
+        Node<T> current = head;
+        int i;
+        for (i = 0; i < size; i++) {
+            if (current.getData().equals(data)) {return i;}
+            current = current.getNextNode();
+        }
+        return -1;
+    }
+
+    private Node<T> getNode(int index) {
+        Node<T> current = head;
+        for (int i = 0; i <= index; i++) {
+            if (current == null) {return null;}
+            if (i == index) {return current;}
+            current = current.getNextNode();
+        }
+        return current;
     }
 
     @Override
@@ -111,11 +131,10 @@ public class MyDLL<T> implements ListADT<T>, Iterator<T> {
         if (index > size || index < 0) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
         }
-        Node<T> current = head;
-        for (int i = 0; i < index; i++) {
-            current = current.getNextNode();
+        if (index == 0 && size == 0){
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
         }
-        return current.getData();
+        return getNode(index).getData();
     }
 
     @Override
@@ -123,42 +142,35 @@ public class MyDLL<T> implements ListADT<T>, Iterator<T> {
         if (index > size || index < 0) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
         }
-        Node<T> current = (Node<T>) this.get(index);
+        if (index == 0 && size == 0) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        }
+        Node<T> current = getNode(index);
         Node<T> prev = current.getPrevNode();
         Node<T> next = current.getNextNode();
-        prev.setNextNode(next);
-        next.setPrevNode(prev);
+
+        if (prev != null && next != null) {
+            prev.setNextNode(next);
+            next.setPrevNode(prev);
+        } else if (prev != null && next == null) {
+            prev.setNextNode(null);
+        } else if (prev == null && next != null) {
+            head = next;
+        }
+        T data = current.getData();
         current.setData(null);
         current.setNextNode(null);
         current.setPrevNode(null);
         size--;
-        return current.getData();
+        return data;
     }
 
     @Override
     public T remove(T toRemove) throws NullPointerException {
         if (toRemove == null) {
             throw new NullPointerException("Cannot remove a null value");
-        }
-        if (this.contains(toRemove)) {
-            Node<T> current = head;
-            for (int i = 0; i < size-1; i++) {
-                if (toRemove.equals(current)) {
-                    break;
-                }
-                current = current.getNextNode();
-            }
-            Node<T> prev = current.getPrevNode();
-            Node<T> next = current.getNextNode();
-            prev.setNextNode(next);
-            next.setPrevNode(prev);
-            current.setData(null);
-            current.setNextNode(null);
-            current.setPrevNode(null);
-            size--;
-            return current.getData();
-        }
-        return null;
+        }if (!contains(toRemove)){return null;}
+        return remove(getNode(toRemove));
     }
 
     @Override
@@ -169,13 +181,13 @@ public class MyDLL<T> implements ListADT<T>, Iterator<T> {
         if (toChange == null) {
             throw new NullPointerException("Cannot change a null value");
         }
-        Node<T> current = (Node<T>) this.get(index);
-        Node<T> newNode = new Node<>(toChange);
-        newNode.setPrevNode(current.getPrevNode());
-        newNode.setNextNode(current.getNextNode());
-        current.setPrevNode(null);
-        current.setNextNode(null);
-        return current.getData();
+        if (index == 0 && size == 0){
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        }
+        Node<T> current = getNode(index);
+        T oldValue = current.getData();
+        current.setData(toChange);
+        return oldValue;
     }
 
     @Override
@@ -189,8 +201,8 @@ public class MyDLL<T> implements ListADT<T>, Iterator<T> {
             throw new NullPointerException("Object to be found is null");
         }
         Node<T> current = head;
-        for (int i = 0; i < size-1; i++) {
-            if (toFind.equals(current)) {
+        for (int i = 0; i < size; i++) {
+            if (toFind.equals(current.getData())) {
                 return true;
             }
             current = current.getNextNode();
@@ -204,10 +216,10 @@ public class MyDLL<T> implements ListADT<T>, Iterator<T> {
             throw new NullPointerException("Object is null");
         }
         if (toHold.length < size) {
-            toHold = (T[]) new Object[size];
+            toHold = (T[]) Array.newInstance(toHold.getClass().getComponentType(), size);
         }
         Node<T> current = head;
-        for (int i = 0; i < size-1; i++) {
+        for (int i = 0; i < size; i++) {
             toHold[i] = current.getData();
             current = current.getNextNode();
         }
@@ -216,9 +228,9 @@ public class MyDLL<T> implements ListADT<T>, Iterator<T> {
 
     @Override
     public Object[] toArray() {
-        T[] array = (T[]) new Object[size];
+        Object[] array = new Object[size];
         Node<T> current = head;
-        for (int i = 0; i < size-1; i++) {
+        for (int i = 0; i < size; i++) {
             array[i] = current.getData();
             current = current.getNextNode();
         }
@@ -227,7 +239,7 @@ public class MyDLL<T> implements ListADT<T>, Iterator<T> {
 
     @Override
     public Iterator iterator() {
-        return null;
+        return new MyListIterator(this.toArray());
     }
 }
 
