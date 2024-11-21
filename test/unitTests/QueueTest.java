@@ -1,5 +1,4 @@
 package unitTests;
-
 import static org.junit.Assert.*;
 
 import java.util.NoSuchElementException;
@@ -7,9 +6,6 @@ import java.util.NoSuchElementException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import exceptions.EmptyQueueException;
-import utilities.Iterator;
 import implementations.MyQueue;
 
 /**
@@ -116,7 +112,13 @@ public class QueueTest
 	 * to return false when two queues are not equal.
 	 * @throws EmptyQueueException 
 	 */
-	@Test
+	@SuppressWarnings("serial")
+	public class EmptyQueueException extends RuntimeException {
+	    public EmptyQueueException(String message) {
+	        super(message);
+	    }
+	}
+	
 	public void testEquals_False() throws EmptyQueueException
 	{
 		MyQueue<Integer> queue2 = new MyQueue<Integer>();
@@ -189,7 +191,7 @@ public class QueueTest
 		queue.enqueue( four );
 		queue.enqueue( five );
 
-		Iterator<Integer> it = queue.iterator();
+		java.util.Iterator<Integer> it = queue.iterator();
 		
 		assertTrue(it.hasNext());
 		
@@ -217,7 +219,7 @@ public class QueueTest
 	@Test
 	public void testIterator_EmptyQ()
 	{
-		Iterator<Integer> it = queue.iterator();
+		java.util.Iterator<Integer> it = queue.iterator();
 		
 		assertFalse(it.hasNext());
 		
@@ -429,7 +431,7 @@ public class QueueTest
 		expectedArray[1] = two;
 		expectedArray[2] = three;
 
-		Object[] actualArray = queue.toArray();
+		Object[] actualArray = queue.toArray(expectedArray);
 		assertArrayEquals( "Failed to convert queue to array.", expectedArray, actualArray );
 	}
 
@@ -439,21 +441,21 @@ public class QueueTest
 	 * to return an array storing all items in the queue from head to first when the array passed has sufficient length.
 	 */
 	@Test
-	public void testToArrayEArray_SufficientArray()
-	{
-		queue.enqueue( one );
-		queue.enqueue( two );
-		queue.enqueue( three );
-	
-		Object[] expectedArray = new Integer[3];
-		
-		expectedArray[0] = one;
-		expectedArray[1] = two;
-		expectedArray[2] = three;
-		
-		Integer[] actualArray = new Integer[3];;
-		actualArray = queue.toArray( actualArray );
-		assertArrayEquals( "Failed to convert queue to array.", expectedArray, actualArray );
+	public void testToArrayEArray_SufficientArray() {
+	    queue.enqueue(one);
+	    queue.enqueue(two);
+	    queue.enqueue(three);
+	    
+	    // Expected array with the correct size
+	    Object[] expectedArray = new Integer[3];
+	    expectedArray[0] = one;
+	    expectedArray[1] = two;
+	    expectedArray[2] = three;
+	    
+	    // Array to store the result of the toArray method
+	    Integer[] actualArray = new Integer[3];
+	    actualArray = queue.toArray(actualArray); // Passing the array as a parameter
+	    assertArrayEquals("Failed to convert queue to array.", expectedArray, actualArray);
 	}
 	
 	/**

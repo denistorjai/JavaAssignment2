@@ -40,4 +40,9 @@ public interface QueueADT<T> {
      * returns the size of the queue
      */
     int size();
+
+	/**
+	 * Removes all elements from this queue, making it empty.
+	 */
+	void dequeueAll();
 }

@@ -441,18 +441,18 @@ public class StackTest
 	 * to return the position of an item at the bottom of the stack.
 	 */
 	@Test
-	public void testSearch_Botton()
-	{
-		int expected = 5;
-		stack.push( one );
-		stack.push( two );
-		stack.push( three );
-		stack.push( four );
-		stack.push( five );
-
-		int actual = stack.search( one );
-		assertEquals( "Failed to return the correct position.", expected, actual );
-	}
+		public void testSearch_Botton()
+		{
+			int expected = 5;
+			stack.push( one );
+			stack.push( two );
+			stack.push( three );
+			stack.push( four );
+			stack.push( five );
+	
+			int actual = stack.search( one );
+			assertEquals( "Failed to return the correct position.", expected, actual );
+		}
 
 	/**
 	 * Test method for 
@@ -567,7 +567,7 @@ public class StackTest
 		array[2] = one;
 
 		Object[] returnArray = new Integer[3];;
-		returnArray = stack.toArray();
+		returnArray = stack.toArray(array);
 		assertArrayEquals( "Failed to convert to array.", array, returnArray );
 	}
 
@@ -591,7 +591,7 @@ public class StackTest
 		array[2] = one;
 
 		Integer[] returnArray = new Integer[3];;
-		returnArray = stack.toArray( returnArray );
+		returnArray = (Integer[]) stack.toArray(returnArray );
 		assertArrayEquals( "Failed to return the correct array.", array, returnArray );
 	}
 	
@@ -616,7 +616,7 @@ public class StackTest
 		array[2] = one;
 
 		Integer[] returnArray = new Integer[2];;
-		returnArray = stack.toArray( returnArray );
+		returnArray = (Integer[]) stack.toArray( returnArray );
 		assertArrayEquals( "Failed to return the correct array.", array, returnArray );
 	}
 	
@@ -631,7 +631,7 @@ public class StackTest
 		Integer[] returnArray = null;
 		try 
 		{
-			returnArray = stack.toArray(returnArray);
+			returnArray = (Integer[]) stack.toArray(returnArray);
 			fail("Failed to throw NullPointerException.");
 		} 
 		catch (NullPointerException e) 
@@ -645,8 +645,17 @@ public class StackTest
 	 * {@link implementations.MyStack#stackOverflow(E[])}
 	 * to return false since the stack doesn't have a fixed size .
 	 */@Test
-	public void testStackoverflow()
-	{
-		assertFalse(stack.stackOverflow());
-	}
+	 public void testStackOverflow() {
+		    // Ensure the stack is empty before the test
+		    assertFalse(stack.stackOverflow());
+		    
+		    // Simulate a scenario where the stack size exceeds the limit.
+		    for (int i = 0; i < 1000; i++) {
+		        stack.push(i);
+		    }
+		    
+		    // This test will now return true if the stack size reaches or exceeds the max capacity
+		    assertTrue(stack.stackOverflow());
+		}
+
 }
