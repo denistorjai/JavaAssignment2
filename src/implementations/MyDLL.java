@@ -241,5 +241,59 @@ public class MyDLL<T> implements ListADT<T>, Iterator<T> {
     public Iterator iterator() {
         return new MyListIterator(this.toArray());
     }
+
+    public void addLast(T item) {
+        if (item == null) {
+            throw new NullPointerException("Cannot add a null value");
+        }
+        
+        Node<T> newNode = new Node<>(item);
+        
+        if (head == null) { // List is empty
+            head = tail = newNode;
+            head.setPrevNode(null);
+            tail.setNextNode(null);
+        } else { // List is not empty
+            tail.setNextNode(newNode);
+            newNode.setPrevNode(tail);
+            tail = newNode;
+            tail.setNextNode(null);
+        }
+        
+        size++;
+    }
+
+
+public T removeFirst() {
+    if (head == null) { // List is empty
+        throw new NoSuchElementException("The list is empty.");
+    }
+    
+    T data = head.getData(); // Save the data of the head node
+    if (head == tail) { // If the list contains only one element
+        head = tail = null;
+    } else { // More than one element in the list
+        Node<T> next = head.getNextNode();
+        head.setData(null); // Clear the data of the current head
+        head.setNextNode(null); // Disconnect the current head
+        if (next != null) {
+            next.setPrevNode(null); // Set the new head's prev to null
+        }
+        head = next; // Update head reference
+    }
+    
+    size--; // Decrease size
+    return data; // Return the removed data
+}
+
+public T getFirst() {
+    if (head == null) { // List is empty
+        throw new NoSuchElementException("The list is empty.");
+    }
+    return head.getData(); // Return the data of the head node
+}
+
+
+
 }
 
