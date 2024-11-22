@@ -2,9 +2,10 @@ import implementations.MyArrayList;
 import implementations.MyQueue;
 import implementations.MyStack;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class XMLParser {
 
@@ -26,24 +27,27 @@ public class XMLParser {
 
         // Try & Catch
         try {
-            // Get File, if Exists, Read Lines and Store in MyArrayList
             File file = new File(filepath);
             if (file.exists()) {
-                // My Array List & Scanner
                 MyArrayList<String> lines = new MyArrayList<>();
-                Scanner scanner = new Scanner(file);
 
-                while (scanner.hasNextLine()) {
-                    lines.add(scanner.nextLine());
+                // Use FileReader and BufferedReader
+                FileReader fileReader = new FileReader(file);
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    lines.add(line);
                 }
-                scanner.close();
 
-                // Loop Through Data & Pass into Line Parse Function
+                bufferedReader.close();
+                fileReader.close();
+
+                // Parse each line
                 for (int i = 0; i < lines.size(); i++) {
                     LineParse(lines.get(i));
                 }
 
-                // Process Stack and Queue for Errors
                 processErrors();
 
             } else {

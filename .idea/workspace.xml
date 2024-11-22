@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3bff0e41-1200-4de2-b35e-621a7ff4dd41" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/XMLParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/XMLParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/XMLParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/XMLParser.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,45 +23,45 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.XMLParser (2).executor": "Run",
-    "Application.XMLParser (3).executor": "Run",
-    "Application.XMLParser (4).executor": "Run",
-    "Application.XMLParser (5).executor": "Run",
-    "Application.XMLParser (6).executor": "Run",
-    "Application.XMLParser (7).executor": "Run",
-    "Application.XMLParser.executor": "Run",
-    "JUnit.ArrayListTest.executor": "Run",
-    "JUnit.DLLTest.executor": "Run",
-    "JUnit.DLLTest.testAddAll_DLL.executor": "Debug",
-    "JUnit.DLLTest.testAddIntE_ItemAddedCorrectly_Head.executor": "Run",
-    "JUnit.DLLTest.testAddIntE_ItemAddedCorrectly_Middle.executor": "Run",
-    "JUnit.DLLTest.testClear_Size.executor": "Debug",
-    "JUnit.DLLTest.testGetInt_IndexOutOfBoundsException_Empty.executor": "Run",
-    "JUnit.DLLTest.testRemoveInt_IndexOutOfBoundsException_Empty.executor": "Run",
-    "JUnit.DLLTest.testRemoveInt_OneElement.executor": "Debug",
-    "JUnit.DLLTest.testRemove_Found.executor": "Run",
-    "JUnit.DLLTest.testRemove_NotFound.executor": "Run",
-    "JUnit.DLLTest.testSet_IndexOutOfBoundsException_Empty.executor": "Run",
-    "JUnit.DLLTest.testSet_SpecificIndex.executor": "Debug",
-    "JUnit.DLLTest.testToArray.executor": "Debug",
-    "JUnit.DLLTest.testToArrayEArray_Insufficient.executor": "Run",
-    "JUnit.QueueTest.executor": "Run",
-    "JUnit.StackTest.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/torjai/Downloads/lab4StartingCode/JavaAssignment2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.XMLParser (2).executor&quot;: &quot;Run&quot;,
+    &quot;Application.XMLParser (3).executor&quot;: &quot;Run&quot;,
+    &quot;Application.XMLParser (4).executor&quot;: &quot;Run&quot;,
+    &quot;Application.XMLParser (5).executor&quot;: &quot;Run&quot;,
+    &quot;Application.XMLParser (6).executor&quot;: &quot;Run&quot;,
+    &quot;Application.XMLParser (7).executor&quot;: &quot;Run&quot;,
+    &quot;Application.XMLParser.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ArrayListTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DLLTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DLLTest.testAddAll_DLL.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.DLLTest.testAddIntE_ItemAddedCorrectly_Head.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DLLTest.testAddIntE_ItemAddedCorrectly_Middle.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DLLTest.testClear_Size.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.DLLTest.testGetInt_IndexOutOfBoundsException_Empty.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DLLTest.testRemoveInt_IndexOutOfBoundsException_Empty.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DLLTest.testRemoveInt_OneElement.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.DLLTest.testRemove_Found.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DLLTest.testRemove_NotFound.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DLLTest.testSet_IndexOutOfBoundsException_Empty.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DLLTest.testSet_SpecificIndex.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.DLLTest.testToArray.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.DLLTest.testToArrayEArray_Insufficient.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.QueueTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StackTest.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/torjai/Downloads/lab4StartingCode/JavaAssignment2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.XMLParser">
     <configuration name="XMLParser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="XMLParser" />
@@ -178,6 +179,7 @@
       <workItem from="1732259863610" duration="7866000" />
       <workItem from="1732269382962" duration="613000" />
       <workItem from="1732272006316" duration="11023000" />
+      <workItem from="1732316575405" duration="330000" />
     </task>
     <servers />
   </component>
