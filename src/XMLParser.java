@@ -200,29 +200,4 @@ public class XMLParser {
         return tag;
     }
 
-    // Print Stack
-    public static <T> void printStack(MyStack<T> stack) {
-        if (stack.isEmpty()) {
-            System.out.println("Stack is empty");
-            return;
-        }
-
-        System.out.println("Stack contents (top to bottom):");
-        for (int i = stack.size() - 1; i >= 0; i--) {
-            System.out.println(stack.stackList.get(i)); // Access elements directly from stackList
-        }
-    }
-
-    public static <T> void printQueue(MyQueue<T> queue) {
-        if (queue.isEmpty()) {
-            System.out.println("Queue is empty.");
-            return;
-        }
-
-        System.out.println("Queue contents (front to rear):");
-        for (T item : queue) { // Using the iterator of MyQueue
-            System.out.println(item);
-        }
-    }
-
 }
