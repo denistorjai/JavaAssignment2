@@ -3,6 +3,7 @@ import static org.junit.Assert.*;
 
 import java.util.NoSuchElementException;
 
+import exceptions.EmptyQueueException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -104,19 +105,6 @@ public class QueueTest
 
 		boolean actual = queue.equals( queue2 );
 		assertEquals( "Failed to return true.", expected, actual );
-	}
-
-	/**
-	 * Test method for
-	 * {@link implementations.MyQueue#equals(utilities.QueueADT)}
-	 * to return false when two queues are not equal.
-	 * @throws EmptyQueueException 
-	 */
-	@SuppressWarnings("serial")
-	public class EmptyQueueException extends RuntimeException {
-	    public EmptyQueueException(String message) {
-	        super(message);
-	    }
 	}
 	
 	public void testEquals_False() throws EmptyQueueException
