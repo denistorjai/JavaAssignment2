@@ -109,9 +109,6 @@ public class XMLParser {
             System.out.println(extrasQ.dequeue());
         }
 
-        // Loop through and find duplicate tags in
-
-
         // Find duplicate tags in error queue
         while (!errorQ.isEmpty()) {
             String CurrentTopStack = errorQ.peek();
@@ -133,17 +130,17 @@ public class XMLParser {
             }
         }
 
-        System.out.println("Issues Found:" + (ErrorsFound.size() + extrasQ.size() ) );
+        System.out.println("======= ERROR LOG =======");
 
         while (!ErrorsFound.isEmpty()) {
             String CurrentTopStack = ErrorsFound.peek();
-            System.out.println(CurrentTopStack);
+            System.out.println("<" + CurrentTopStack + ">");
             ErrorsFound.dequeue();
         }
 
         while (!extrasQ.isEmpty()) {
             String CurrentTopStack = extrasQ.peek();
-            System.out.println(CurrentTopStack);
+            System.out.println("<" + CurrentTopStack + ">");
             extrasQ.dequeue();
         }
 
