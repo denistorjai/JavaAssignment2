@@ -74,7 +74,7 @@ public class XMLParser {
             // Raw Tag for parsing
             String RawTag = extractTagName(tag);
 
-            if (tag.endsWith("/>")) {
+            if (tag.endsWith("/>") || tag.startsWith("<?")) {
                 // self closing tag ~ ignore
                 continue;
             } else if (tag.startsWith("</")) {
@@ -90,6 +90,13 @@ public class XMLParser {
 
     // Process Stack and Queue for Errors
     public static void processErrors() {
+
+        // If no Error, Print No Errors Found
+        if (errorQ.isEmpty() && extrasQ.isEmpty()) {
+            System.out.println("No errors found");
+        }
+
+        printStack(myStack);
 
         // Check if Stack is not empty == leftover starting tags, put them into error queue
         while (!myStack.isEmpty()) {
@@ -199,5 +206,24 @@ public class XMLParser {
         }
         return tag;
     }
+
+    // Temporary Stack Printer
+    public static void printStack(MyStack<String> stack) {
+
+        MyStack<String> tempStack = new MyStack<>();
+
+        while (!stack.isEmpty()) {
+            String element = stack.pop();
+            System.out.println(element);
+            tempStack.push(element);  // Save it to restore later
+        }
+
+        // Restore the original stack
+        while (!tempStack.isEmpty()) {
+            stack.push(tempStack.pop());
+        }
+
+    }
+
 
 }
