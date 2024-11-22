@@ -10,7 +10,6 @@ public class XMLParser {
 
     // Create Stack and Queue Classes
     static MyStack<String> myStack = new MyStack<>();
-    static MyQueue<String> myQueue = new MyQueue<>();
 
     // Error Queue
     static MyQueue<String> errorQ = new MyQueue<>();
@@ -72,18 +71,18 @@ public class XMLParser {
             String tag = line.substring(start, end + 1).trim();
             line = line.substring(end + 1);  // Remove processed part of the line
 
-            if (tag.startsWith("</")) {
+            // Raw Tag for parsing
+            String RawTag = extractTagName(tag);
+
+            if (tag.endsWith("/>")) {
                 // self closing tag ~ ignore
-                System.out.println("Self closing tag" + tag);
-                break;
-            } else if (tag.endsWith("/>")) {
+                continue;
+            } else if (tag.startsWith("</")) {
                 // Handle ending tag
-                System.out.println("Ending tag" + tag);
-                handleEndingTag(tag);
+                handleEndingTag(RawTag);
             } else if (tag.startsWith("<")) {
                 // Handle Starting tag
-                System.out.println("Starting tag" + tag);
-                handleStartingTag(tag);
+                handleStartingTag(RawTag);
             }
 
         }
@@ -92,87 +91,113 @@ public class XMLParser {
     // Process Stack and Queue for Errors
     public static void processErrors() {
 
-        while (!myStack.isEmpty() && !myQueue.isEmpty()) {
-            // Check if Stack is not empty, if true then enqueue Error Q
-            if (!myStack.isEmpty()) {
-                errorQ.enqueue(myStack.peek());
-            }
-
-            // Report error if one queue is empty while the other is not
-            if ((errorQ.isEmpty() && !myStack.isEmpty()) || (!errorQ.isEmpty() && myStack.isEmpty())) {
-                System.out.println("Error: " + myStack.peek());
-                System.out.println("Error: " + errorQ.peek());
-            }
-
-            // Check if both queues are not empty, compare their top elements
-            if (!errorQ.isEmpty() && !myStack.isEmpty()) {
-                if (myStack.peek().equals(errorQ.peek())) {
-                    System.out.println("Error: " + myStack.peek());
-                    System.out.println("Error: " + errorQ.peek());
-                    errorQ.dequeue();
-                }
-            } else {
-                errorQ.dequeue();
-                myStack.pop();
-            }
-
+        // Check if Stack is not empty == leftover starting tags, put them into error queue
+        while (!myStack.isEmpty()) {
+            String remainingTag = myStack.pop();
+            errorQ.enqueue(remainingTag);
+            System.out.println("Error: " + remainingTag);
         }
+
+        // check if error q or extras q is empty.
+        if (!errorQ.isEmpty() && extrasQ.isEmpty()) {
+            // Report each error in errorQ as error
+            while (!errorQ.isEmpty()) {
+                String tag = errorQ.dequeue();
+                System.out.println("Error: " + tag);
+            }
+        } else if (errorQ.isEmpty() && !extrasQ.isEmpty()) {
+            // Report each extra tag in extrasQ as error
+            while (!extrasQ.isEmpty()) {
+                String tag = extrasQ.dequeue();
+                System.out.println("Error: " + tag);
+            }
+        }
+
+        // If both queues are not empty then peek and compare
+        while (!errorQ.isEmpty() && !extrasQ.isEmpty()) {
+
+            // tags
+            String errorTag = errorQ.peek();
+            String extraTag = extrasQ.peek();
+
+            // If they don't match, dequeue from errorQ and report as error
+            if (!errorTag.equals(extraTag)) {
+                errorTag = errorQ.dequeue();
+                System.out.println("Error: " + errorTag);
+            } else {
+                // If they match, dequeue from both and continue
+                errorQ.dequeue();
+                extrasQ.dequeue();
+            }
+        }
+
+        // if there are elements still left in errorQ then report and dequeue.
+        while (!errorQ.isEmpty()) {
+            String tag = errorQ.dequeue();
+            System.out.println("Error: " + tag);
+        }
+
+        // if there are still elements in extra q then dequeue and report.
+        while (!extrasQ.isEmpty()) {
+            String tag = extrasQ.dequeue();
+            System.out.println("Error: " + tag);
+        }
+
     }
 
     // Handle Ending Tag Logic
     public static void handleEndingTag(String tag) {
 
-        // Check if Stack is Empty
+        // if Stack is empty then add tag to queue because no matching starting tag
         if (myStack.isEmpty()) {
-            // Unmatched Closing Tag, enqueue into error queue
             errorQ.enqueue(tag);
-        } else {
-            // Get Top of Error Q and Top of Stack
-            String topErrorQ = errorQ.peek();
-            String topStack = myStack.peek();
-
-            // Tag matches head of errorQ
-            if (topErrorQ.equals(tag)) {
-                errorQ.dequeue();
-            }
-
-            // Tag matches with head of stack
-            if (topStack.equals(tag)) {
-                myStack.pop();
-            }
-
-            // Search Stack for Matching Start Tag
-            if (myStack.contains(tag)) {
-
-                boolean foundMatchingTag = false;
-
-                // Loop and Pop Each item until matching tag is found
-                while (!foundMatchingTag) {
-                    // Get Top Tag
-                    String currentTopTag = myStack.peek();
-
-                    // If Top Tag == Tag, then set FoundMatchingTag to true
-                    if (currentTopTag.equals(tag)) {
-                        foundMatchingTag = true;
-                    } else {
-                        // Pop into Error Queue & Report as Error
-                        System.out.println("Error: " + currentTopTag);
-                        errorQ.enqueue(currentTopTag);
-                        myStack.pop();
-                    }
-
-                }
-            } else {
-                // Pop into Extras queue
-                extrasQ.enqueue(tag);
-            }
+            return;
         }
+
+        // If Ending Tag matches with Top of My Stack = (Starting Tag & Ending Tag) then clear
+        String TopStartingTag = myStack.peek();
+
+        // If it matches then pop and return
+        if (TopStartingTag.equals(tag)) {
+            myStack.pop();
+            return;
+        }
+
+        // if ending tag matches head of error queue then dequeue and ignore
+        if (!errorQ.isEmpty() && errorQ.peek().equals(tag)) {
+            errorQ.dequeue();
+            return;
+        }
+
+        // If Stack has starting tag, then remove top until it matches, if not matches then add to error
+        if (myStack.contains(tag)) {
+            while(myStack.peek().equals(tag)) {
+                errorQ.enqueue(tag);
+                myStack.pop();
+                System.out.println("Error: " + tag);
+            }
+        } else {
+            extrasQ.enqueue(tag);
+        }
+
     }
 
     // Handle Starting Tag Logic
     public static void handleStartingTag(String tag) {
         // Starting Tag ~ Push on Stack
         myStack.push(tag);
+    }
+
+    // Unformatted tag
+    private static String extractTagName(String tag) {
+        if (tag.startsWith("</")) {
+            return tag.substring(2, tag.length() - 1).split(" ")[0];
+        } else if (tag.endsWith("/>")) {
+            return tag.substring(1, tag.length() - 2).split(" ")[0];
+        } else if (tag.startsWith("<")) {
+            return tag.substring(1, tag.length() - 1).split(" ")[0];
+        }
+        return tag;
     }
 
 }
