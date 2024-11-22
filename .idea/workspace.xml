@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3bff0e41-1200-4de2-b35e-621a7ff4dd41" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2p5e2WdiZJFK4uC08APzGoIlXyc" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.ArrayListTest.executor": "Run",
+    "JUnit.DLLTest.executor": "Run",
+    "JUnit.DLLTest.testAddAll_DLL.executor": "Debug",
+    "JUnit.DLLTest.testAddIntE_ItemAddedCorrectly_Head.executor": "Run",
+    "JUnit.DLLTest.testAddIntE_ItemAddedCorrectly_Middle.executor": "Run",
+    "JUnit.DLLTest.testClear_Size.executor": "Debug",
+    "JUnit.DLLTest.testGetInt_IndexOutOfBoundsException_Empty.executor": "Run",
+    "JUnit.DLLTest.testRemoveInt_IndexOutOfBoundsException_Empty.executor": "Run",
+    "JUnit.DLLTest.testRemoveInt_OneElement.executor": "Debug",
+    "JUnit.DLLTest.testRemove_Found.executor": "Run",
+    "JUnit.DLLTest.testRemove_NotFound.executor": "Run",
+    "JUnit.DLLTest.testSet_IndexOutOfBoundsException_Empty.executor": "Run",
+    "JUnit.DLLTest.testSet_SpecificIndex.executor": "Debug",
+    "JUnit.DLLTest.testToArray.executor": "Debug",
+    "JUnit.DLLTest.testToArrayEArray_Insufficient.executor": "Run",
+    "JUnit.QueueTest.executor": "Run",
+    "JUnit.StackTest.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "kotlin-language-version-configured": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="DLLTest.testAddIntE_ItemAddedCorrectly_Head" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="assignment2StartingCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="unitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="unitTests" />
+      <option name="MAIN_CLASS_NAME" value="unitTests.DLLTest" />
+      <option name="METHOD_NAME" value="testAddIntE_ItemAddedCorrectly_Head" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DLLTest.testAddIntE_ItemAddedCorrectly_Middle" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="assignment2StartingCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="unitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="unitTests" />
+      <option name="MAIN_CLASS_NAME" value="unitTests.DLLTest" />
+      <option name="METHOD_NAME" value="testAddIntE_ItemAddedCorrectly_Middle" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DLLTest.testRemove_Found" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="assignment2StartingCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="unitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="unitTests" />
+      <option name="MAIN_CLASS_NAME" value="unitTests.DLLTest" />
+      <option name="METHOD_NAME" value="testRemove_Found" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DLLTest.testRemove_NotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="assignment2StartingCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="unitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="unitTests" />
+      <option name="MAIN_CLASS_NAME" value="unitTests.DLLTest" />
+      <option name="METHOD_NAME" value="testRemove_NotFound" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DLLTest.testSet_IndexOutOfBoundsException_Empty" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="assignment2StartingCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="unitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="unitTests" />
+      <option name="MAIN_CLASS_NAME" value="unitTests.DLLTest" />
+      <option name="METHOD_NAME" value="testSet_IndexOutOfBoundsException_Empty" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.DLLTest.testAddIntE_ItemAddedCorrectly_Middle" />
+        <item itemvalue="JUnit.DLLTest.testAddIntE_ItemAddedCorrectly_Head" />
+        <item itemvalue="JUnit.DLLTest.testSet_IndexOutOfBoundsException_Empty" />
+        <item itemvalue="JUnit.DLLTest.testRemove_NotFound" />
+        <item itemvalue="JUnit.DLLTest.testRemove_Found" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18968.26" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3bff0e41-1200-4de2-b35e-621a7ff4dd41" name="Changes" comment="" />
+      <created>1732060158052</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1732060158052</updated>
+      <workItem from="1732060159061" duration="11085000" />
+      <workItem from="1732234728504" duration="3976000" />
+    </task>
+    <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/unitTests/DLLTest.java</url>
+          <line>1010</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/unitTests/DLLTest.java</url>
+          <line>1283</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/unitTests/DLLTest.java</url>
+          <line>1106</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/unitTests/DLLTest.java</url>
+          <line>204</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/unitTests/DLLTest.java</url>
+          <line>230</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
