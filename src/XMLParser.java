@@ -91,63 +91,58 @@ public class XMLParser {
     // Process Stack and Queue for Errors
     public static void processErrors() {
 
+        MyQueue<String> ErrorsFound = new MyQueue<>();
+
         // If no Error, Print No Errors Found
         if (errorQ.isEmpty() && extrasQ.isEmpty()) {
             System.out.println("No errors found");
         }
 
-        printStack(myStack);
-
-        // Check if Stack is not empty == leftover starting tags, put them into error queue
+        // Push stack
         while (!myStack.isEmpty()) {
-            String remainingTag = myStack.pop();
-            errorQ.enqueue(remainingTag);
-            System.out.println("Error: " + remainingTag);
+            errorQ.enqueue(myStack.pop());
         }
 
-        // check if error q or extras q is empty.
-        if (!errorQ.isEmpty() && extrasQ.isEmpty()) {
-            // Report each error in errorQ as error
-            while (!errorQ.isEmpty()) {
-                String tag = errorQ.dequeue();
-                System.out.println("Error: " + tag);
-            }
-        } else if (errorQ.isEmpty() && !extrasQ.isEmpty()) {
-            // Report each extra tag in extrasQ as error
-            while (!extrasQ.isEmpty()) {
-                String tag = extrasQ.dequeue();
-                System.out.println("Error: " + tag);
-            }
+        // IF EITHER QUEUE IS EMPTY BUT NOT BOTH, REPORT EACH E INTO BOTH QUEUES AS ERROR
+        while ( (errorQ.isEmpty() && !extrasQ.isEmpty()) || (!errorQ.isEmpty() && extrasQ.isEmpty()) ) {
+            System.out.println(errorQ.dequeue());
+            System.out.println(extrasQ.dequeue());
         }
 
-        // If both queues are not empty then peek and compare
-        while (!errorQ.isEmpty() && !extrasQ.isEmpty()) {
+        // Loop through and find duplicate tags in
 
-            // tags
-            String errorTag = errorQ.peek();
-            String extraTag = extrasQ.peek();
 
-            // If they don't match, dequeue from errorQ and report as error
-            if (!errorTag.equals(extraTag)) {
-                errorTag = errorQ.dequeue();
-                System.out.println("Error: " + errorTag);
-            } else {
-                // If they match, dequeue from both and continue
-                errorQ.dequeue();
-                extrasQ.dequeue();
-            }
-        }
-
-        // if there are elements still left in errorQ then report and dequeue.
+        // Find duplicate tags in error queue
         while (!errorQ.isEmpty()) {
-            String tag = errorQ.dequeue();
-            System.out.println("Error: " + tag);
+            String CurrentTopStack = errorQ.peek();
+            errorQ.dequeue();
+            if (!errorQ.isEmpty()) {
+                String NextTopStack = errorQ.peek();
+                if (!CurrentTopStack.equals(NextTopStack)) {
+                    ErrorsFound.enqueue(CurrentTopStack);
+                }
+            }
         }
 
-        // if there are still elements in extra q then dequeue and report.
+        for (int i = ErrorsFound.size() - 1; i >= 0; i--) {
+            String CurrentTopStack = extrasQ.peek();
+            String CurrentTopErrorStack = ErrorsFound.peek();
+            if (CurrentTopStack.equals(CurrentTopErrorStack)) {
+                extrasQ.dequeue();
+                ErrorsFound.dequeue();
+            }
+        }
+
+        while (!ErrorsFound.isEmpty()) {
+            String CurrentTopStack = ErrorsFound.peek();
+            System.out.println(CurrentTopStack);
+            ErrorsFound.dequeue();
+        }
+
         while (!extrasQ.isEmpty()) {
-            String tag = extrasQ.dequeue();
-            System.out.println("Error: " + tag);
+            String CurrentTopStack = extrasQ.peek();
+            System.out.println(CurrentTopStack);
+            extrasQ.dequeue();
         }
 
     }
@@ -178,10 +173,9 @@ public class XMLParser {
 
         // If Stack has starting tag, then remove top until it matches, if not matches then add to error
         if (myStack.contains(tag)) {
-            while(myStack.peek().equals(tag)) {
+            while(!myStack.peek().equals(tag)) {
                 errorQ.enqueue(tag);
                 myStack.pop();
-                System.out.println("Error: " + tag);
             }
         } else {
             extrasQ.enqueue(tag);
@@ -207,23 +201,29 @@ public class XMLParser {
         return tag;
     }
 
-    // Temporary Stack Printer
-    public static void printStack(MyStack<String> stack) {
-
-        MyStack<String> tempStack = new MyStack<>();
-
-        while (!stack.isEmpty()) {
-            String element = stack.pop();
-            System.out.println(element);
-            tempStack.push(element);  // Save it to restore later
+    // Print Stack
+    public static <T> void printStack(MyStack<T> stack) {
+        if (stack.isEmpty()) {
+            System.out.println("Stack is empty");
+            return;
         }
 
-        // Restore the original stack
-        while (!tempStack.isEmpty()) {
-            stack.push(tempStack.pop());
+        System.out.println("Stack contents (top to bottom):");
+        for (int i = stack.size() - 1; i >= 0; i--) {
+            System.out.println(stack.stackList.get(i)); // Access elements directly from stackList
         }
-
     }
 
+    public static <T> void printQueue(MyQueue<T> queue) {
+        if (queue.isEmpty()) {
+            System.out.println("Queue is empty.");
+            return;
+        }
+
+        System.out.println("Queue contents (front to rear):");
+        for (T item : queue) { // Using the iterator of MyQueue
+            System.out.println(item);
+        }
+    }
 
 }

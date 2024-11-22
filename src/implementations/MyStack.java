@@ -15,7 +15,7 @@ import utilities.Iterator;
  */
 public class MyStack<T> implements StackADT<T> {
 
-    private MyArrayList<T> stackList; // Internal data structure to hold stack elements.
+    public MyArrayList<T> stackList; // Internal data structure to hold stack elements.
 
     /**
      * Constructs an empty stack using the custom MyArrayList implementation.
