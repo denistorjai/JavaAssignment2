@@ -133,6 +133,8 @@ public class XMLParser {
             }
         }
 
+        System.out.println("Issues Found:" + (ErrorsFound.size() + extrasQ.size() ) );
+
         while (!ErrorsFound.isEmpty()) {
             String CurrentTopStack = ErrorsFound.peek();
             System.out.println(CurrentTopStack);
