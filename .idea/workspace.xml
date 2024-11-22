@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3bff0e41-1200-4de2-b35e-621a7ff4dd41" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/XMLParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/XMLParser.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +65,7 @@
     <configuration name="XMLParser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="XMLParser" />
       <module name="assignment2StartingCode" />
-      <option name="PROGRAM_PARAMETERS" value="res/sample2.xml" />
+      <option name="PROGRAM_PARAMETERS" value="res/sample1.xml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -179,7 +178,7 @@
       <workItem from="1732259863610" duration="7866000" />
       <workItem from="1732269382962" duration="613000" />
       <workItem from="1732272006316" duration="11023000" />
-      <workItem from="1732316575405" duration="330000" />
+      <workItem from="1732316575405" duration="979000" />
     </task>
     <servers />
   </component>

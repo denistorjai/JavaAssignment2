@@ -100,6 +100,8 @@ public class XMLParser {
         // If no Error, Print No Errors Found
         if (errorQ.isEmpty() && extrasQ.isEmpty()) {
             System.out.println("No errors found");
+        } else {
+            System.out.println("======= ERROR LOG =======");
         }
 
         // Push stack
@@ -133,8 +135,6 @@ public class XMLParser {
                 ErrorsFound.dequeue();
             }
         }
-
-        System.out.println("======= ERROR LOG =======");
 
         while (!ErrorsFound.isEmpty()) {
             String CurrentTopStack = ErrorsFound.peek();
