@@ -4,11 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3bff0e41-1200-4de2-b35e-621a7ff4dd41" name="Changes" comment="" />
+    <list default="true" id="3bff0e41-1200-4de2-b35e-621a7ff4dd41" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/XMLParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/XMLParser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/exceptions/EmptyQueueException.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/exceptions/EmptyQueueException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/unitTests/ArrayListTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/unitTests/ArrayListTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/unitTests/DLLTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/unitTests/DLLTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/unitTests/QueueTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/unitTests/QueueTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/unitTests/StackTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/unitTests/StackTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/utilities/Iterator.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/utilities/Iterator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/utilities/ListADT.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/utilities/ListADT.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/utilities/MyDLLNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XMLParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/XMLParser.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -19,6 +37,13 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.XMLParser (2).executor": "Run",
+    "Application.XMLParser (3).executor": "Run",
+    "Application.XMLParser (4).executor": "Run",
+    "Application.XMLParser (5).executor": "Run",
+    "Application.XMLParser (6).executor": "Run",
+    "Application.XMLParser (7).executor": "Run",
+    "Application.XMLParser.executor": "Run",
     "JUnit.ArrayListTest.executor": "Run",
     "JUnit.DLLTest.executor": "Run",
     "JUnit.DLLTest.testAddAll_DLL.executor": "Debug",
@@ -37,10 +62,90 @@
     "JUnit.QueueTest.executor": "Run",
     "JUnit.StackTest.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "kotlin-language-version-configured": "true"
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/torjai/Downloads/lab4StartingCode/JavaAssignment2",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.XMLParser (7)">
+    <configuration name="XMLParser (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="XMLParser" />
+      <module name="assignment2StartingCode" />
+      <option name="PROGRAM_PARAMETERS" value="res/sample1.xml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="XMLParser (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="XMLParser" />
+      <module name="assignment2StartingCode" />
+      <option name="PROGRAM_PARAMETERS" value="res/sample1.xml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="XMLParser (4)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="XMLParser" />
+      <module name="assignment2StartingCode" />
+      <option name="PROGRAM_PARAMETERS" value="res/sample2.xml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="XMLParser (5)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="XMLParser" />
+      <module name="assignment2StartingCode" />
+      <option name="PROGRAM_PARAMETERS" value="res/sample1.xml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="XMLParser (6)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="XMLParser" />
+      <module name="assignment2StartingCode" />
+      <option name="PROGRAM_PARAMETERS" value="res/sample1.xml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="XMLParser (7)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="XMLParser" />
+      <module name="assignment2StartingCode" />
+      <option name="PROGRAM_PARAMETERS" value="res/sample2.xml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="XMLParser" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="XMLParser" />
+      <module name="assignment2StartingCode" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="XMLParser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="XMLParser" />
+      <module name="assignment2StartingCode" />
+      <option name="PROGRAM_PARAMETERS" value="res/sample2.xml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="XMLParser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="XMLParser" />
+      <module name="assignment2StartingCode" />
+      <option name="PROGRAM_PARAMETERS" value="res/sample1.xml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DLLTest.testAddIntE_ItemAddedCorrectly_Head" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="assignment2StartingCode" />
       <extension name="coverage">
@@ -123,18 +228,19 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DLLTest.testAddIntE_ItemAddedCorrectly_Middle" />
-        <item itemvalue="JUnit.DLLTest.testAddIntE_ItemAddedCorrectly_Head" />
-        <item itemvalue="JUnit.DLLTest.testSet_IndexOutOfBoundsException_Empty" />
-        <item itemvalue="JUnit.DLLTest.testRemove_NotFound" />
-        <item itemvalue="JUnit.DLLTest.testRemove_Found" />
+        <item itemvalue="Application.XMLParser (7)" />
+        <item itemvalue="Application.XMLParser (6)" />
+        <item itemvalue="Application.XMLParser (5)" />
+        <item itemvalue="Application.XMLParser" />
+        <item itemvalue="Application.XMLParser (2)" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18968.26" />
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.300" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.300" />
       </set>
     </attachedChunks>
   </component>
@@ -148,8 +254,12 @@
       <updated>1732060158052</updated>
       <workItem from="1732060159061" duration="11085000" />
       <workItem from="1732234728504" duration="3976000" />
+      <workItem from="1732259863610" duration="3376000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

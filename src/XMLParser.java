@@ -18,7 +18,6 @@ public class XMLParser {
 
     // Main Function
     public static void main(String[] args) {
-
         // Get File Path
         if (args.length == 0) {
             System.out.println("Usage: java XMLParser <filepath>");
@@ -31,7 +30,6 @@ public class XMLParser {
             // Get File, if Exists, Read Lines and Store in MyArrayList
             File file = new File(filepath);
             if (file.exists()) {
-
                 // My Array List & Scanner
                 MyArrayList<String> lines = new MyArrayList<>();
                 Scanner scanner = new Scanner(file);
@@ -46,33 +44,8 @@ public class XMLParser {
                     LineParse(lines.get(i));
                 }
 
-                while (!myStack.isEmpty() && !myQueue.isEmpty() ) {
-
-                    // Check if Stack is not empty, if true then enqueue Error Q
-                    if (!myStack.isEmpty()) {
-                        errorQ.enqueue(myStack.peek());
-                    }
-
-                    // if either queue is empty but not both then report each element in both queues as error
-                    if ( (errorQ.isEmpty() & !myStack.isEmpty()) || (!errorQ.isEmpty() & myStack.isEmpty()) ) {
-                        // Report as error both queues
-                        System.out.println("Error:" + myStack.peek() );
-                        System.out.println("Error:" + errorQ.peek() );
-                    }
-
-                    // if both queues are not empty, peek both queues, and dequeue and report as Error if they don't match
-                    if (!errorQ.isEmpty() & !myStack.isEmpty() ) {
-                        if (myStack.peek().equals(errorQ.peek())) {
-                            System.out.println("Error:" + myStack.peek() );
-                            System.out.println("Error:" + errorQ.peek() );
-                            errorQ.dequeue();
-                        }
-                    } else {
-                        errorQ.dequeue();
-                        myStack.pop();
-                    }
-
-                }
+                // Process Stack and Queue for Errors
+                processErrors();
 
             } else {
                 System.out.println("File does not exist");
@@ -80,7 +53,6 @@ public class XMLParser {
         } catch (IOException error) {
             System.err.println(error.getMessage());
         }
-
     }
 
     // Line by Line Parser
@@ -91,28 +63,57 @@ public class XMLParser {
             int start = line.indexOf('<');
             int end = line.indexOf('>');
 
-            // Stop if Line doesn't exist
+            // Stop if no valid tag found
             if (start == -1 || end == -1) {
                 break;
             }
 
             // Get tag
-            String tag = line.substring(start + 1, end);
-            line = line.substring(end + 1);
+            String tag = line.substring(start, end + 1).trim();
+            line = line.substring(end + 1);  // Remove processed part of the line
 
-            // Determine Tag Type
-            switch (tag) {
-                case "</":
-                    // Handle Self Closing Tag ~ Ignore
-                    break;
-                case "/>":
-                    // Handle Ending Tag
-                    handleEndingTag(tag);
-                    break;
-                case "<":
-                    // Handle Starting Tag
-                    handleStartingTag(tag);
-                    break;
+            if (tag.startsWith("</")) {
+                // self closing tag ~ ignore
+                System.out.println("Self closing tag" + tag);
+                break;
+            } else if (tag.endsWith("/>")) {
+                // Handle ending tag
+                System.out.println("Ending tag" + tag);
+                handleEndingTag(tag);
+            } else if (tag.startsWith("<")) {
+                // Handle Starting tag
+                System.out.println("Starting tag" + tag);
+                handleStartingTag(tag);
+            }
+
+        }
+    }
+
+    // Process Stack and Queue for Errors
+    public static void processErrors() {
+
+        while (!myStack.isEmpty() && !myQueue.isEmpty()) {
+            // Check if Stack is not empty, if true then enqueue Error Q
+            if (!myStack.isEmpty()) {
+                errorQ.enqueue(myStack.peek());
+            }
+
+            // Report error if one queue is empty while the other is not
+            if ((errorQ.isEmpty() && !myStack.isEmpty()) || (!errorQ.isEmpty() && myStack.isEmpty())) {
+                System.out.println("Error: " + myStack.peek());
+                System.out.println("Error: " + errorQ.peek());
+            }
+
+            // Check if both queues are not empty, compare their top elements
+            if (!errorQ.isEmpty() && !myStack.isEmpty()) {
+                if (myStack.peek().equals(errorQ.peek())) {
+                    System.out.println("Error: " + myStack.peek());
+                    System.out.println("Error: " + errorQ.peek());
+                    errorQ.dequeue();
+                }
+            } else {
+                errorQ.dequeue();
+                myStack.pop();
             }
 
         }
@@ -126,54 +127,46 @@ public class XMLParser {
             // Unmatched Closing Tag, enqueue into error queue
             errorQ.enqueue(tag);
         } else {
-
             // Get Top of Error Q and Top of Stack
-            String TopErrorQStack = errorQ.peek();
-            String TopStack = myStack.peek();
+            String topErrorQ = errorQ.peek();
+            String topStack = myStack.peek();
 
             // Tag matches head of errorQ
-            if (TopErrorQStack.equals(tag)) {
+            if (topErrorQ.equals(tag)) {
                 errorQ.dequeue();
             }
 
             // Tag matches with head of stack
-            if (TopStack.equals(tag)) {
+            if (topStack.equals(tag)) {
                 myStack.pop();
             }
 
             // Search Stack for Matching Start Tag
-            String MatchingTag = String.valueOf(myStack.contains(tag));
+            if (myStack.contains(tag)) {
 
-            // Matching Tag Found
-            if (MatchingTag.equals(tag)) {
+                boolean foundMatchingTag = false;
 
-                boolean FoundMatchingTag = false;
-
-                // Loop and Pop Each item into
-                while (!FoundMatchingTag) {
-
+                // Loop and Pop Each item until matching tag is found
+                while (!foundMatchingTag) {
                     // Get Top Tag
-                    String CurrentTopTag = myStack.peek();
+                    String currentTopTag = myStack.peek();
 
-                    // If Top Tag == Tag then set Found Matching to true
-                    if (CurrentTopTag.equals(tag)) {
-                        FoundMatchingTag = true;
+                    // If Top Tag == Tag, then set FoundMatchingTag to true
+                    if (currentTopTag.equals(tag)) {
+                        foundMatchingTag = true;
                     } else {
                         // Pop into Error Queue & Report as Error
-                        System.out.println("Error:" + CurrentTopTag );
-                        errorQ.enqueue(CurrentTopTag);
+                        System.out.println("Error: " + currentTopTag);
+                        errorQ.enqueue(currentTopTag);
                         myStack.pop();
                     }
 
                 }
-
             } else {
-                // pop into Extras queue
+                // Pop into Extras queue
                 extrasQ.enqueue(tag);
             }
-
         }
-
     }
 
     // Handle Starting Tag Logic
